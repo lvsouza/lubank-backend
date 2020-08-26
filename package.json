@@ -1,5 +1,5 @@
 {
-  "name": "fbank",
+  "name": "lubank",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "https://github.com/lvsouza/fbank-backend.git",

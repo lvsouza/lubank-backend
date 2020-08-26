@@ -1,9 +1,19 @@
+require('dotenv/config');
+
+import compression from 'compression';
 import express from 'express';
+import cors from 'cors';
+
+import { routes } from './routes';
 
 const app = express();
 
-app.get('/', () => {
-    console.log('Hello');
-});
+app.use(cors());
+app.use(compression());
 
-app.listen(3333);
+app.use(express.json());
+app.use(routes);
+
+app.listen(process.env.PORT || 3333);
+
+console.log(`Server is running in port: ${process.env.PORT || 3333}...`);

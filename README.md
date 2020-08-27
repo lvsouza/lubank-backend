@@ -8,6 +8,7 @@ Sistema de controle de conta corrente bancária, processando solicitações de d
   - Realizar um depósito
   - Realizar um resgate
   - Fazer um pagamento
+  - Consulta de saldo
 
 
 ### As tecnologias utilizadas

@@ -13,7 +13,7 @@ export async function up(knex: Knex) {
         table.bigInteger('userId').references('id').inTable(TableNames.user).notNullable();
 
         // Comentário na tabela
-        table.comment("Tabela usada para armazenar os usuários do sistema por tenant.");
+        table.comment("Tabela usada para armazenar as contas dos usuários do banco.");
 
     })
         .then(() => console.info(`# Created table ${TableNames.account}.`))

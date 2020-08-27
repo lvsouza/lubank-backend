@@ -1,6 +1,6 @@
 export enum TableNames {
     user = "user",
     account = "account",
-    transactionType = "transactionType",
+    transactionType = "transaction_type",
     transaction = "transaction",
 }

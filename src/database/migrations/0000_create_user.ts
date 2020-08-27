@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
 
         table.bigIncrements('id').primary().index();
         table.string('name', 150).unique().notNullable();
-        table.string('email').notNullable();
+        table.string('email').index().notNullable();
         table.string('password').notNullable();
 
         // Comentário na tabela

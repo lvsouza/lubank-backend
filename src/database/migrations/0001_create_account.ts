@@ -6,11 +6,11 @@ export async function up(knex: Knex) {
     return knex.schema.createTable(TableNames.account, table => {
 
         table.bigIncrements('id').primary().index();
-        table.integer('accountNumber', 4).notNullable();
+        table.integer('account_number', 4).index().notNullable();
         table.integer('agency', 8).notNullable();
         table.decimal('balance').notNullable();
 
-        table.bigInteger('userId').references('id').inTable(TableNames.user).notNullable();
+        table.bigInteger('user_id').references('id').inTable(TableNames.user).notNullable();
 
         // Comentário na tabela
         table.comment("Tabela usada para armazenar as contas dos usuários do banco.");

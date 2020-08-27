@@ -14,7 +14,7 @@ export async function up(knex: Knex) {
         table.comment("Tabela usada para armazenar os usuários do sistema por tenant.");
 
     })
-        .then(() => console.info(`# Created table ${TableNames.user}.`))
+        .then(() => console.info(`\n\n# Created table ${TableNames.user}.`))
 }
 
 export async function down(knex: Knex) {

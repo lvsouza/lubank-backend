@@ -11,7 +11,7 @@ export async function up(knex: Knex) {
         table.string('password').notNullable();
 
         // Comentário na tabela
-        table.comment("Tabela usada para armazenar os usuários do sistema por tenant.");
+        table.comment("Tabela usada para armazenar os usuários do sistema.");
 
     })
         .then(() => console.info(`\n\n# Created table ${TableNames.user}.`))

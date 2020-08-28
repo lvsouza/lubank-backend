@@ -3,4 +3,5 @@ export enum TableNames {
     account = "account",
     transactionType = "transaction_type",
     transaction = "transaction",
+    billet = "billet",
 }

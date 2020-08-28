@@ -1,7 +1,5 @@
 import * as jwt from 'jsonwebtoken';
 
-import { IJwtData } from './../IJwtData';
-
 /**
  * Extrai os dados contido no token
  */

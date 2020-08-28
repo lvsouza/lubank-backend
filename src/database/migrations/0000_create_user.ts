@@ -6,8 +6,8 @@ export async function up(knex: Knex) {
     return knex.schema.createTable(TableNames.user, table => {
 
         table.bigIncrements('id').primary().index();
-        table.string('name', 150).unique().notNullable();
-        table.string('email').index().notNullable();
+        table.string('name', 150).notNullable();
+        table.string('email').unique().index().notNullable();
         table.string('password').notNullable();
 
         // Comentário na tabela

@@ -2,7 +2,7 @@ import knex from './../../connection';
 import { CreateUserProvider } from './CreateUserProvider';
 import { ICreateUser } from './ICreateUser';
 
-describe('Inscrição de usuário na aplicação', () => {
+describe('Inscrição de usuário', () => {
     beforeAll(async () => {
 
         // Configura a variável de ambiente para o JWT

@@ -1,6 +1,6 @@
 import { jwtEncode } from "./JwtEncode";
 
-describe('Criação de um JWT', () => {
+describe('Criar um JWT', () => {
     beforeAll(() => {
 
         // Configura a variável de ambiente para o JWT

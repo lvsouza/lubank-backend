@@ -1,6 +1,7 @@
 import Knex from "knex";
 
 import { TableNames } from './../TableNames';
+import { log } from "../MigrationHelp";
 
 export async function up(knex: Knex) {
     return knex.schema.createTable(TableNames.transaction, table => {
@@ -15,12 +16,12 @@ export async function up(knex: Knex) {
         table.comment("Tabela usada para armazenar as transações feitas pelos usuários do banco.");
 
     })
-        .then(() => console.info(`# Created table ${TableNames.transaction}.`))
+        .then(() => log(`# Created table ${TableNames.transaction}.`))
 }
 
 export async function down(knex: Knex) {
     return knex
         .schema
         .dropTable(TableNames.transaction)
-        .then(() => console.info(`Dropped table ${TableNames.transaction}.`));
+        .then(() => log(`Dropped table ${TableNames.transaction}.`));
 }

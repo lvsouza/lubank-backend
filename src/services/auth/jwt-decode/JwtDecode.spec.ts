@@ -1,7 +1,7 @@
 import { jwtEncode } from "./../jwt-encode/JwtEncode";
 import { jwtDecode } from "./JwtDecode";
 
-describe('Extração de dados do JWT', () => {
+describe('Extração de dados', () => {
 
     beforeAll(async () => {
 

@@ -1,6 +1,7 @@
 import Knex from "knex";
 
 import { TableNames } from '../TableNames';
+import { log } from "../MigrationHelp";
 
 const transactions = [
     { description: 'Deposito' },
@@ -19,13 +20,13 @@ export async function up(knex: Knex) {
 
     })
         .then(() => knex(TableNames.transactionType).insert(transactions))
-        .then(() => console.info(`# Created table ${TableNames.transactionType}.`))
-        .then(() => console.info(`  + Inserted 'Deposito'.\n  + Inserted 'Transferência'.\n  + Inserted 'Pagamento'.`));
+        .then(() => log(`# Created table ${TableNames.transactionType}.`))
+        .then(() => log(`  + Inserted 'Deposito'.\n  + Inserted 'Transferência'.\n  + Inserted 'Pagamento'.`));
 }
 
 export async function down(knex: Knex) {
     return knex
         .schema
         .dropTable(TableNames.transactionType)
-        .then(() => console.info(`Dropped table ${TableNames.transactionType}.`));
+        .then(() => log(`Dropped table ${TableNames.transactionType}.`));
 }

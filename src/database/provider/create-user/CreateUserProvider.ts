@@ -1,6 +1,5 @@
-import { hash, genSalt } from 'bcryptjs';
-
 import { TableNames } from '../../TableNames';
+import { passHash } from '../../../services/auth';
 import { ICreateUser } from "./ICreateUser";
 import knex from './../../connection';
 
@@ -13,7 +12,7 @@ export class CreateUserProvider {
      */
     async execute(user: ICreateUser): Promise<Omit<ICreateUser, 'password'> | null> {
         try {
-            const hashedPassword = await hash(user.password, await genSalt(Number(process.env.HASH_SALT) || 10));
+            const hashedPassword = await passHash(user.password);
 
             const insertedIds = await knex(TableNames.user)
                 .insert({ ...user, password: hashedPassword });

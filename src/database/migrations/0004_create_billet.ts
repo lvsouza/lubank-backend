@@ -1,6 +1,7 @@
 import Knex from "knex";
 
 import { TableNames } from './../TableNames';
+import { log } from "../MigrationHelp";
 
 export async function up(knex: Knex) {
     return knex.schema.createTable(TableNames.billet, table => {
@@ -14,12 +15,12 @@ export async function up(knex: Knex) {
         table.comment("Tabela usada para armazenar os boletos que poderão ser pagos pelo usuário.");
 
     })
-        .then(() => console.info(`# Created table ${TableNames.billet}.`))
+        .then(() => log(`# Created table ${TableNames.billet}.`))
 }
 
 export async function down(knex: Knex) {
     return knex
         .schema
         .dropTable(TableNames.billet)
-        .then(() => console.info(`Dropped table ${TableNames.billet}.`));
+        .then(() => log(`Dropped table ${TableNames.billet}.`));
 }

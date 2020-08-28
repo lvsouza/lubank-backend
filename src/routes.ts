@@ -1,6 +1,6 @@
-import express from 'express';
+import { Router } from 'express';
 
-const route = express.Router();
+const route = Router();
 route.get('/', (_, res) => res.json("Lubank is working..."));
 
 export const routes = route;

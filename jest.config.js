@@ -19,7 +19,7 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    'src/controllers/**/*.ts'
+    'src/**/*.ts'
   ],
 
   // The directory where Jest should output its coverage files
@@ -167,7 +167,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\ts$': 'ts-jest'
+    "^.+\\.(ts|tsx)$": "ts-jest"
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

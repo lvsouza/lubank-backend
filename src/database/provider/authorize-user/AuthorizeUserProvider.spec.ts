@@ -32,7 +32,7 @@ describe('Authenticação de usuários', () => {
                     email: 'test@gmail.com',
                     password: '123456'
                 })
-        ).toBeInstanceOf(String);
+        ).toBeTruthy();
     });
 
     test('Validação do token jwt', async () => {
@@ -43,7 +43,7 @@ describe('Authenticação de usuários', () => {
             password: '123456'
         })
 
-        expect(jwtDecode(accessToken)).toEqual({ user_id: 1 });
+        expect(jwtDecode(String(accessToken))).toEqual({ user_id: 1 });
     });
 
     test('Tentativa de criar token para usuário que não existe', async () => {

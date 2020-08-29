@@ -8,6 +8,7 @@ export async function up(knex: Knex) {
 
         table.bigIncrements('id').primary().index();
         table.decimal('value').notNullable();
+        table.dateTime('created_at').notNullable();
 
         table.bigInteger('user_id').references('id').inTable(TableNames.user).notNullable().index();
         table.bigInteger('type_id').references('id').inTable(TableNames.transactionType).notNullable().index();

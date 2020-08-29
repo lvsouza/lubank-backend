@@ -1,9 +1,9 @@
 import { compare } from "bcryptjs";
-import Knex from './../../connection';
 
 import { IAuthorizeUser } from "./IAuthorizeUserProvider";
 import { jwtEncode } from "../../../services/auth";
 import { TableNames } from "../../TableNames";
+import Knex from './../../connection';
 
 export class AuthorizeUserProvider {
     async execute({ email, password }: IAuthorizeUser): Promise<string | null> {
@@ -17,6 +17,7 @@ export class AuthorizeUserProvider {
             const isMatch = await compare(password?.toString(), String(user?.password));
             if (!isMatch) return null;
 
+            // Valida se o usuário foi encontrado
             if (!user?.id) return null;
 
             // Gera o token de autenticação e devolve para o usuário

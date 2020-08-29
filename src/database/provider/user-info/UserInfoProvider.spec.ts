@@ -42,6 +42,6 @@ describe('Busca informações de usuários', () => {
 
     test('Busca user usuário que não existe', async () => {
         const userInfoProvider = new UserInfoProvider();
-        expect((await userInfoProvider.getByEmail('test2@gmail.com'))).toBeNull();
+        expect((await userInfoProvider.getByEmail('naoexiste@gmail.com'))).toBeNull();
     });
 });

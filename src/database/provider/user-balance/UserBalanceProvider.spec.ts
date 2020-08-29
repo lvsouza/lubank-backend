@@ -1,8 +1,9 @@
+import { UserBalanceProvider } from './UserBalanceProvider';
 import { ICreateUser } from '../create-user/ICreateUser';
+import { formatDate } from '../../../services/helper';
 import { passHash } from '../../../services/auth';
 import { TableNames } from '../../TableNames';
 import knex from './../../connection';
-import { UserBalanceProvider } from './UserBalanceProvider';
 
 describe('Busca saldo da conta', () => {
     beforeAll(async () => {
@@ -23,10 +24,10 @@ describe('Busca saldo da conta', () => {
             { id: null, email: 'test4@gmail.com', name: 'Tester 4', password: await passHash('123456') },
         ];
         const usersAccounts: any[] = [
-            { id: null, account_number: '0000000-0', agency: 1102, balance: 0, last_update: knex.fn.now(), user_id: 1 },
-            { id: null, account_number: '0000001-0', agency: 1102, balance: 450.00, last_update: knex.fn.now(), user_id: 2 },
-            { id: null, account_number: '0000002-0', agency: 1102, balance: 500.00, last_update: addDays(new Date(Date.now()), 1), user_id: 3 },
-            { id: null, account_number: '0000003-0', agency: 1102, balance: 500.00, last_update: addDays(new Date(Date.now()), 10), user_id: 4 },
+            { id: null, account_number: '0000000-0', agency: 1102, user_id: 1, balance: 0,      last_update: formatDate(new Date(Date.now())) },
+            { id: null, account_number: '0000001-0', agency: 1102, user_id: 2, balance: 450.00, last_update: formatDate(new Date(Date.now())) },
+            { id: null, account_number: '0000002-0', agency: 1102, user_id: 3, balance: 500.00, last_update: formatDate(addDays(new Date(Date.now()), -1)) },
+            { id: null, account_number: '0000003-0', agency: 1102, user_id: 4, balance: 500.00, last_update: formatDate(addDays(new Date(Date.now()), -10)) },
         ];
 
         // Inicia um banco de dados em memória para cada teste que for executado 
@@ -47,30 +48,30 @@ describe('Busca saldo da conta', () => {
     // USUÀRIO teste2
     test('Busca saldo usuário teste2', async () => {
         const userBalanceProvider = new UserBalanceProvider();
-        expect(await userBalanceProvider.getBalanceByUserId(2)).toBe(450.00);
+        expect(await userBalanceProvider.getBalanceByUserId(2)).toBe(parseFloat('450.00'));
     });
 
 
     // USUÀRIO teste3
     test('Saldo usuário teste3 que rendeu de ** um dia para o outro **', async () => {
         const userBalanceProvider = new UserBalanceProvider();
-        expect(await userBalanceProvider.getBalanceByUserId(3)).toBe(505.00);
+        expect(await userBalanceProvider.getBalanceByUserId(3)).toBe(parseFloat('505.00'));
     });
-    
+
     test('Valida usuário 3 se o calculo de rendimento está sendo feito apenas uma vez e não a cada consulta', async () => {
         const userBalanceProvider = new UserBalanceProvider();
-        expect(await userBalanceProvider.getBalanceByUserId(3)).toBe(505.00);
+        expect(await userBalanceProvider.getBalanceByUserId(3)).toBe(parseFloat('505.00'));
     });
 
 
     // USUÀRIO teste4
     test('Saldo usuário teste4 que rendeu ** por 10 dias **', async () => {
         const userBalanceProvider = new UserBalanceProvider();
-        expect(await userBalanceProvider.getBalanceByUserId(4)).toBe(550.00);
+        expect(await userBalanceProvider.getBalanceByUserId(4)).toBe(parseFloat('552.31'));
     });
-    
+
     test('Valida usuário 4 se o calculo de rendimento está sendo feito apenas uma vez e não a cada consulta', async () => {
         const userBalanceProvider = new UserBalanceProvider();
-        expect(await userBalanceProvider.getBalanceByUserId(4)).toBe(550.00);
+        expect(await userBalanceProvider.getBalanceByUserId(4)).toBe(parseFloat('552.31'));
     });
 });

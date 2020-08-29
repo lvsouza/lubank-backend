@@ -10,7 +10,7 @@ export async function up(knex: Knex) {
         table.integer('account_number', 4).unique().index().notNullable();
         table.integer('agency', 8).notNullable();
         table.decimal('balance').notNullable();
-        table.dateTime('last_update').notNullable();
+        table.date('last_update').notNullable();
 
         table.bigInteger('user_id').references('id').inTable(TableNames.user).notNullable();
 

@@ -6,7 +6,8 @@ export class UserInfoProvider {
     async getByEmail(email: string): Promise<IUserInfo | null> {
         try {
             const user = await Knex(TableNames.user)
-                .select<{ id: number, name: string }[]>('id', 'name')
+                .select<{ id: number, name: string, account_number: number, agency: string }[]>('id', 'name', 'account_number', 'agency')
+                .innerJoin(`${TableNames.account}`, `${TableNames.account}.user_id`, `${TableNames.user}.id`)
                 .where({ email })
                 .first();
 
@@ -17,6 +18,8 @@ export class UserInfoProvider {
                 email,
                 id: user.id,
                 name: user.name,
+                agency: user.agency,
+                account_number: user.account_number,
             };
         } catch (_) {
             return null;

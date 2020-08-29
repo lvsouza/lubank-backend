@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
     return knex.schema.createTable(TableNames.account, table => {
 
         table.bigIncrements('id').primary().index();
-        table.integer('account_number', 4).index().notNullable();
+        table.integer('account_number', 4).unique().index().notNullable();
         table.integer('agency', 8).notNullable();
         table.decimal('balance').notNullable();
         table.dateTime('last_update').notNullable();

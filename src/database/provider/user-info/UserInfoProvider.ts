@@ -6,14 +6,18 @@ export class UserInfoProvider {
     async getByEmail(email: string): Promise<IUserInfo | null> {
         try {
             const user = await Knex(TableNames.user)
-                .select<{ id: number, name: string, account_number: number, agency: string }[]>('id', 'name', 'account_number', 'agency')
+                .select<{ id: number, name: string, account_number: number, agency: string }[]>(
+                    `${TableNames.user}.id`,
+                    `${TableNames.user}.name`,
+                    `${TableNames.account}.agency`,
+                    `${TableNames.account}.account_number`,
+                )
                 .innerJoin(`${TableNames.account}`, `${TableNames.account}.user_id`, `${TableNames.user}.id`)
-                .where({ email })
+                .where(`${TableNames.user}.email`, email)
                 .first();
 
             if (!user?.id) return null;
 
-            // Gera o token de autenticação e devolve para o usuário
             return {
                 email,
                 id: user.id,

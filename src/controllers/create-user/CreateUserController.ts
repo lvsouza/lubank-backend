@@ -60,7 +60,10 @@ export class CreateUserController {
         return responseHandler(res, {
             statusCode: HttpStatusCode.CREATED,
             data: {
-                user: createdUser,
+                user: {
+                    name: createdUser.name,
+                    email: createdUser.email,
+                },
                 accessToken,
             },
         });

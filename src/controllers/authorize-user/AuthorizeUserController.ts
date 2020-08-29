@@ -25,7 +25,6 @@ export class AuthorizeUserController {
         }
 
         const authorizeUserProvider = new AuthorizeUserProvider();
-
         const accessToken = await authorizeUserProvider.execute({
             email: String(email),
             password: String(password)
@@ -41,7 +40,13 @@ export class AuthorizeUserController {
 
         return responseHandler(res, {
             statusCode: HttpStatusCode.OK,
-            data: { accessToken },
+            data: {
+                user: {
+                    email,
+                    name: '',
+                },
+                accessToken,
+            },
         });
     }
 }

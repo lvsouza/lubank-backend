@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 
-import { CreateUserController } from './controllers';
+import { CreateUserController, AuthorizeUserController } from './controllers';
 
 const route = Router();
 
@@ -22,5 +22,9 @@ route.use(celebrate({
 // Rota para criação de usuário
 const createUserController = new CreateUserController();
 route.post('/api/signup', createUserController.validation, createUserController.execute);
+
+// Rota que autoriza um usuário por token jwt usuário
+const authorizeUserController = new AuthorizeUserController();
+route.get('/api/sign', authorizeUserController.validation, authorizeUserController.execute);
 
 export const routes = route;

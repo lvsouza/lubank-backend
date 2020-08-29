@@ -6,13 +6,6 @@ import { jwtEncode } from "../../../services/auth";
 import { TableNames } from "../../TableNames";
 
 export class AuthorizeUserProvider {
-    /* valid = celebrate({
-        headers: Joi.object({
-            password: Joi.string().required(),
-            email: Joi.string().email().required(),
-        }).unknown(),
-    }); */
-
     async execute({ email, password }: IAuthorizeUser): Promise<string | null> {
         try {
             const user = await Knex(TableNames.user)

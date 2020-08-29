@@ -2,7 +2,7 @@ import * as HttpStatusCode from 'http-status-codes';
 import { Request, Response } from "express";
 import { celebrate, Joi } from 'celebrate';
 
-import { AuthorizeUserProvider } from "../../database/provider";
+import { AuthorizeUserProvider, UserInfoProvider } from "../../database/provider";
 import { responseHandler } from '../../services/helper';
 
 export class AuthorizeUserController {
@@ -38,12 +38,23 @@ export class AuthorizeUserController {
             });
         }
 
+        const userInfoProvider = new UserInfoProvider();
+        const userInfo = await userInfoProvider.getByEmail(String(email));
+
+        if (!userInfo) {
+            return responseHandler(res, {
+                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
+                statusCode: HttpStatusCode.BAD_REQUEST,
+                message: 'User infomration was not found',
+            });
+        }
+
         return responseHandler(res, {
             statusCode: HttpStatusCode.OK,
             data: {
                 user: {
                     email,
-                    name: '',
+                    name: userInfo.name,
                 },
                 accessToken,
             },

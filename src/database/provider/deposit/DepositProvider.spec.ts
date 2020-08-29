@@ -22,8 +22,8 @@ describe('Busca saldo da conta', () => {
             { id: null, email: 'test2@gmail.com', name: 'Tester 2', password: await passHash('123456') },
         ];
         const usersAccounts: any[] = [
-            { id: null, account_number: '0000000-0', agency: 1102, user_id: 1, balance: 0, last_update: formatDate(new Date(Date.now())) },
-            { id: null, account_number: '0000001-0', agency: 1102, user_id: 2, balance: 500.00, last_update: formatDate(addDays(new Date(Date.now()), -1)) },
+            { id: null, account_number: '0000001-0', agency: 1102, user_id: 1, balance: 0,      last_update: formatDate(new Date(Date.now())) },
+            { id: null, account_number: '0000002-0', agency: 1102, user_id: 2, balance: 500.00, last_update: formatDate(addDays(new Date(Date.now()), -1)) },
         ];
 
         // Inicia um banco de dados em memória 

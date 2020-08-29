@@ -2,7 +2,7 @@ import * as HttpStatusCode from 'http-status-codes';
 import { Request, Response } from "express";
 import { celebrate, Joi } from 'celebrate';
 
-import { CreateUserProvider } from "../../database/provider";
+import { CreateUserProvider, AuthorizeUserProvider } from "../../database/provider";
 import { responseHandler } from '../../services/helper';
 
 export class CreateUserController {
@@ -42,9 +42,27 @@ export class CreateUserController {
             });
         }
 
+        const authorizeUserProvider = new AuthorizeUserProvider();
+
+        const accessToken = await authorizeUserProvider.execute({
+            email: String(email),
+            password: String(password)
+        });
+
+        if (!accessToken) {
+            return responseHandler(res, {
+                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
+                statusCode: HttpStatusCode.BAD_REQUEST,
+                message: 'Login failed',
+            });
+        }
+
         return responseHandler(res, {
             statusCode: HttpStatusCode.CREATED,
-            data: createdUser,
+            data: {
+                user: createdUser,
+                accessToken,
+            },
         });
     }
 }

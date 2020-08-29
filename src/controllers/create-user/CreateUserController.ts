@@ -19,9 +19,9 @@ export class CreateUserController {
 
         if (!name && !email && !password) {
             return responseHandler(res, {
-                message: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
             });
         }
 
@@ -36,8 +36,8 @@ export class CreateUserController {
 
         if (!createdUser) {
             return responseHandler(res, {
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
                 message: 'User was not created',
             });
         }
@@ -51,14 +51,14 @@ export class CreateUserController {
 
         if (!accessToken) {
             return responseHandler(res, {
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
                 message: 'Login failed',
             });
         }
 
         return responseHandler(res, {
-            statusCode: HttpStatusCode.CREATED,
+            statusCode: HttpStatusCode.StatusCodes.CREATED,
             data: {
                 user: {
                     name: createdUser.name,

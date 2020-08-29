@@ -18,9 +18,9 @@ export class AuthorizeUserController {
 
         if (!email && !password) {
             return responseHandler(res, {
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
                 message: 'Email or password is not valid',
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
             });
         }
 
@@ -32,8 +32,8 @@ export class AuthorizeUserController {
 
         if (!accessToken) {
             return responseHandler(res, {
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
                 message: 'Login failed',
             });
         }
@@ -43,14 +43,14 @@ export class AuthorizeUserController {
 
         if (!userInfo) {
             return responseHandler(res, {
-                error: HttpStatusCode.getStatusText(HttpStatusCode.BAD_REQUEST),
-                statusCode: HttpStatusCode.BAD_REQUEST,
+                error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
+                statusCode: HttpStatusCode.StatusCodes.BAD_REQUEST,
                 message: 'User infomration was not found',
             });
         }
 
         return responseHandler(res, {
-            statusCode: HttpStatusCode.OK,
+            statusCode: HttpStatusCode.StatusCodes.OK,
             data: {
                 user: {
                     email,

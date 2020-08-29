@@ -9,23 +9,23 @@ export class UserBalanceController {
     async execute({ headers }: Request, res: Response): Promise<Response> {
         const authorization = headers?.authorization;
         if (!authorization) return responseHandler(res, {
-            statusCode: HttpStatusCode.UNAUTHORIZED,
-            error: HttpStatusCode.getStatusText(HttpStatusCode.UNAUTHORIZED),
-            message: HttpStatusCode.getStatusText(HttpStatusCode.UNAUTHORIZED),
+            statusCode: HttpStatusCode.StatusCodes.UNAUTHORIZED,
+            error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
+            message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
         });
 
         const jwtData = jwtDecode(authorization);
         if (!jwtData) return responseHandler(res, {
-            statusCode: HttpStatusCode.UNAUTHORIZED,
-            error: HttpStatusCode.getStatusText(HttpStatusCode.UNAUTHORIZED),
-            message: HttpStatusCode.getStatusText(HttpStatusCode.UNAUTHORIZED),
+            statusCode: HttpStatusCode.StatusCodes.UNAUTHORIZED,
+            error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
+            message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
         }); 
 
         const userBalanceProvider = new UserBalanceProvider();
         const balance = await userBalanceProvider.getBalanceByUserId(jwtData.user_id);
 
         return responseHandler(res, {
-            statusCode: HttpStatusCode.OK,
+            statusCode: HttpStatusCode.StatusCodes.OK,
             data: { balance: balance?.toFixed(2) }
         });
     }

@@ -35,14 +35,13 @@ describe('Busca saldo da conta', () => {
     });
 
     // USUÀRIO teste1
-    test('Realiza um deposito para o usuário 1 ', async () => {
+    test('Realiza um deposito para o usuário 1', async () => {
         const depositProvider = new DepositProvider();
         expect(await depositProvider.execute(1, 50.00)).toEqual({ balance: parseFloat('50.00') });
     });
 
-
     // USUÀRIO teste2
-    test('Realiza um deposito para o usuário 2 ', async () => {
+    test('Realiza um deposito para o usuário 2 que está a um dia sem atualizar a conta com juros', async () => {
         const depositProvider = new DepositProvider();
         expect(await depositProvider.execute(2, 50.00)).toEqual({ balance: parseFloat('555.00') });
     });

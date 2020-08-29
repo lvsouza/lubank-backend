@@ -8,7 +8,7 @@ describe('Inscrição de usuário', () => {
         // Configura a variável de ambiente para o JWT
         process.env.JWT_SECRET = '123456'
 
-        // Inicia um banco de dados em memória para cada teste que for executado 
+        // Inicia um banco de dados em memória 
         await knex.migrate.latest();
     });
 

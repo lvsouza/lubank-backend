@@ -30,7 +30,7 @@ describe('Busca saldo da conta', () => {
             { id: null, account_number: '0000003-0', agency: 1102, user_id: 4, balance: 500.00, last_update: formatDate(addDays(new Date(Date.now()), -10)) },
         ];
 
-        // Inicia um banco de dados em memória para cada teste que for executado 
+        // Inicia um banco de dados em memória 
         await knex.migrate.latest();
 
         // Insere usuário e suas contas de teste na base

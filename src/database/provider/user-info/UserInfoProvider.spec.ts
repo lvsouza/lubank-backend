@@ -17,7 +17,7 @@ describe('Busca informações de usuários', () => {
             { id: null, account_number: '0000001-0', agency: 1102, balance: 0, last_update: knex.fn.now(), user_id: 2 },
         ];
 
-        // Inicia um banco de dados em memória para cada teste que for executado 
+        // Inicia um banco de dados em memória 
         await knex.migrate.latest();
 
         // Insere usuário e suas contas de teste na base

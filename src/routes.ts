@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 
-import { CreateUserController, AuthorizeUserController } from './controllers';
+import { CreateUserController, AuthorizeUserController, UserBalanceController } from './controllers';
 
 const route = Router();
 
@@ -26,5 +26,9 @@ route.post('/api/signup', createUserController.validation, createUserController.
 // Rota que autoriza um usuário por token jwt usuário
 const authorizeUserController = new AuthorizeUserController();
 route.get('/api/sign', authorizeUserController.validation, authorizeUserController.execute);
+
+// Rota que retorna o saldo atual do usuário
+const userBalanceController = new UserBalanceController();
+route.get('/api/balance', userBalanceController.execute);
 
 export const routes = route;

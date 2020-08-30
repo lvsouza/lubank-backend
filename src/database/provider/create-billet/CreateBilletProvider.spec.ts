@@ -29,4 +29,25 @@ describe('Cria boletos', () => {
         const createBilletProvider = new CreateBilletProvider();
         expect(await createBilletProvider.execute(data)).toBe(null);
     });
+
+    test('Cria um boleto com valor -50.00', async () => {
+        const data: ICreateBillet = { code: '112233445566778899', favored: 'Juca Pedroso', value: -50.00 };
+
+        const createBilletProvider = new CreateBilletProvider();
+        expect(await createBilletProvider.execute(data)).toBe(null);
+    });
+
+    test('Cria um boleto sem code', async () => {
+        const data: ICreateBillet = { code: '', favored: 'Juca Pedroso', value: 50.00 };
+
+        const createBilletProvider = new CreateBilletProvider();
+        expect(await createBilletProvider.execute(data)).toBe(null);
+    });
+
+    test('Cria um boleto sem favored', async () => {
+        const data: ICreateBillet = { code: '1364659879852', favored: '', value: 50.00 };
+
+        const createBilletProvider = new CreateBilletProvider();
+        expect(await createBilletProvider.execute(data)).toBe(null);
+    });
 });

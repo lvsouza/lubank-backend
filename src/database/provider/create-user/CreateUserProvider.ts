@@ -1,8 +1,8 @@
-import { TableNames } from '../../TableNames';
+import { randomize } from '../../../services/helper';
 import { passHash } from '../../../services/auth';
+import { TableNames } from '../../TableNames';
 import { ICreateUser } from "./ICreateUser";
 import knex from './../../connection';
-import { randomize } from '../../../services/helper';
 
 /**
  * Create and valid a new user

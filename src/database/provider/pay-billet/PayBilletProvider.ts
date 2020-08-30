@@ -32,8 +32,8 @@ export class PayBilletProvider {
             // Impede que seja realizado uma transferência se não tiver saldo
             if ((balance - billet.value) < 0) return null;
 
-            const insertedIds = await Knex(TableNames.transaction)
-                .insert({ value: billet.value, user_id: userId, type_id: TransactionTypes.Payment, created_at: Knex.fn.now() });
+            const insertedIds = await trx(TableNames.transaction)
+                .insert({ value: billet.value, user_id: userId, type_id: TransactionTypes.Payment, created_at: trx.fn.now() });
 
             if (!insertedIds[0]) return null;
 

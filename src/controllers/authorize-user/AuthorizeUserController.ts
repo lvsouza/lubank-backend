@@ -55,6 +55,8 @@ export class AuthorizeUserController {
                 user: {
                     email,
                     name: userInfo.name,
+                    agency: userInfo.agency,
+                    account_number: userInfo.account_number,
                 },
                 accessToken,
             },

@@ -17,7 +17,7 @@ export class CreateUserController {
     async execute({ headers }: Request, res: Response): Promise<Response> {
         const { name, email, password } = headers;
 
-        if (!name && !email && !password) {
+        if (!name || !email || !password) {
             return responseHandler(res, {
                 message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),
                 error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.BAD_REQUEST),

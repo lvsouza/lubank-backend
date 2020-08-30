@@ -1,4 +1,5 @@
 import { UserBalanceProvider } from "../user-balance/UserBalanceProvider";
+import { TransactionTypes } from "../../TransactionTypes";
 import { IBilletInfo } from "../billet-info/IBilletInfo";
 import { formatDate } from "../../../services/helper";
 import { TableNames } from "../../TableNames";
@@ -30,6 +31,11 @@ export class PayBilletProvider {
 
             // Impede que seja realizado uma transferência se não tiver saldo
             if ((balance - billet.value) < 0) return null;
+
+            const insertedIds = await Knex(TableNames.transaction)
+                .insert({ value: billet.value, user_id: userId, type_id: TransactionTypes.Payment, created_at: Knex.fn.now() });
+
+            if (!insertedIds[0]) return null;
 
             // Atualiza o saldo na base de dados
             const wasUpdated = await trx(TableNames.account)

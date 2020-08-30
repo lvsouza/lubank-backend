@@ -2,18 +2,18 @@ import * as HttpStatusCode from 'http-status-codes';
 import { Request, Response } from "express";
 import { celebrate, Joi } from 'celebrate';
 
-import { DepositProvider } from '../../database/provider';
+import { PayBilletProvider } from '../../database/provider';
 import { responseHandler } from "../../services/helper";
 import { jwtDecode } from "../../services/auth";
 
-export class DepositController {
+export class PayBilletController {
 
     validation = celebrate({
         headers: Joi.object({
             authorization: Joi.string().required(),
         }).unknown(),
         body: Joi.object({
-            deposit: Joi.number().required().min(1),
+            code: Joi.string().required().min(3).max(255),
         }).unknown(),
     }, { abortEarly: false });
 
@@ -26,8 +26,8 @@ export class DepositController {
             message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
         });
 
-        const { deposit } = body;
-        if (!deposit) return responseHandler(res, {
+        const { code } = body;
+        if (!code) return responseHandler(res, {
             statusCode: HttpStatusCode.StatusCodes.NOT_ACCEPTABLE,
             error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.NOT_ACCEPTABLE),
             message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.NOT_ACCEPTABLE),
@@ -40,9 +40,9 @@ export class DepositController {
             message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
         });
 
-        const depositProvider = new DepositProvider();
-        const balance = await depositProvider.execute(jwtData.user_id, deposit);
-        if (!balance) return responseHandler(res, {
+        const payBilletProvider = new PayBilletProvider();
+        const newBalance = await payBilletProvider.payByCode(jwtData.user_id, code);
+        if (!newBalance) return responseHandler(res, {
             statusCode: HttpStatusCode.StatusCodes.NOT_ACCEPTABLE,
             error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.NOT_ACCEPTABLE),
             message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.NOT_ACCEPTABLE),

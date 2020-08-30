@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 
 import {
-    CreateUserController, AuthorizeUserController, UserBalanceController,
     DepositController, TransferController, CreateBilletController, BilletInfoController,
+    CreateUserController, AuthorizeUserController, UserBalanceController, PayBilletController,
 } from './controllers';
 
 const route = Router();
@@ -49,5 +49,9 @@ route.post('/api/billet', createBilletController.validation, createBilletControl
 // Rota que consulta as informações de um boleto
 const billetInfoController = new BilletInfoController();
 route.post('/api/billet-info', billetInfoController.validation, billetInfoController.execute);
+
+// Rota que consulta as informações de um boleto
+const payBilletController = new PayBilletController();
+route.post('/api/pay-billet', payBilletController.validation, payBilletController.execute);
 
 export const routes = route;

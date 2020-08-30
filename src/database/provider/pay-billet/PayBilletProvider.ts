@@ -28,6 +28,9 @@ export class PayBilletProvider {
                 .first();
             if (!billet) return null;
 
+            // Impede que seja realizado uma transferência se não tiver saldo
+            if ((balance - billet.value) < 0) return null;
+
             // Atualiza o saldo na base de dados
             const wasUpdated = await trx(TableNames.account)
                 .where('user_id', userId)

@@ -3,7 +3,7 @@ import { celebrate, Joi } from 'celebrate';
 
 import {
     CreateUserController, AuthorizeUserController, UserBalanceController,
-    DepositController, TransferController, CreateBilletController,
+    DepositController, TransferController, CreateBilletController, BilletInfoController,
 } from './controllers';
 
 const route = Router();
@@ -45,5 +45,9 @@ route.post('/api/transfer', transferController.validation, transferController.ex
 // Rota que cria um novo boleto na base
 const createBilletController = new CreateBilletController();
 route.post('/api/billet', createBilletController.validation, createBilletController.execute);
+
+// Rota que consulta as informações de um boleto
+const billetInfoController = new BilletInfoController();
+route.post('/api/billet-info', billetInfoController.validation, billetInfoController.execute);
 
 export const routes = route;

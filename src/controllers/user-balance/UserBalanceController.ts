@@ -7,7 +7,7 @@ import { jwtDecode } from "../../services/auth";
 
 export class UserBalanceController {
     async execute({ headers }: Request, res: Response): Promise<Response> {
-        const authorization = headers?.authorization;
+        const { authorization } = headers;
         if (!authorization) return responseHandler(res, {
             statusCode: HttpStatusCode.StatusCodes.UNAUTHORIZED,
             error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
@@ -19,7 +19,7 @@ export class UserBalanceController {
             statusCode: HttpStatusCode.StatusCodes.UNAUTHORIZED,
             error: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
             message: HttpStatusCode.getStatusText(HttpStatusCode.StatusCodes.UNAUTHORIZED),
-        }); 
+        });
 
         const userBalanceProvider = new UserBalanceProvider();
         const balance = await userBalanceProvider.getBalanceByUserId(jwtData.user_id);

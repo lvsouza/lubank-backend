@@ -2,7 +2,7 @@ export interface ITransactionInfo {
     /**
      * Tipo da transação
      */
-    type: number;
+    type_id: number;
     /**
      * Valor da transação
      */

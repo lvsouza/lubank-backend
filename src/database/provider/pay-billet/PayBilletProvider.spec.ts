@@ -1,3 +1,4 @@
+import { BilletInfoProvider } from '../billet-info/BilletInfoProvider';
 import { ICreateBillet } from '../create-billet/ICreateBillet';
 import { ICreateUser } from '../create-user/ICreateUser';
 import { PayBilletProvider } from './PayBilletProvider';
@@ -31,7 +32,10 @@ describe('Realiza o pagamento de um boleto', () => {
         ];
 
         const billets: ICreateBillet[] = [
-            { code: '12345', favored: 'Teste 1', value: 450.00 },
+            { code: '123', favored: 'Teste 1', value: 450.00 },
+            { code: '456', favored: 'Teste 2', value: 450.00 },
+            { code: '789', favored: 'Teste 3', value: 450.00 },
+            { code: '101112', favored: 'Teste 4', value: 10.00 },
         ];
 
         // Inicia um banco de dados em memória 
@@ -46,18 +50,27 @@ describe('Realiza o pagamento de um boleto', () => {
     // BOLETO 1 usuário 1
     test('Paga boleto 1 com usuário 1 que não tem saldo suficiente', async () => {
         const billetInfoProvider = new PayBilletProvider();
-        expect(await billetInfoProvider.payByCode(1, '12345')).toBe(null);
+        expect(await billetInfoProvider.payByCode(1, '123')).toBe(null);
     });
 
     // BOLETO 1 usuário 2
     test('Paga boleto 1 com usuário 2 que tem saldo suficente', async () => {
         const billetInfoProvider = new PayBilletProvider();
-        expect(await billetInfoProvider.payByCode(2, '12345')).toBe(parseFloat('0.00'));
+        expect(await billetInfoProvider.payByCode(2, '456')).toBe(parseFloat('0.00'));
     });
 
     // BOLETO 1 usuário 3
     test('Paga boleto 1 com usuário 3 que tem saldo suficente. E será calculado o juros de um dia para o outro.', async () => {
         const billetInfoProvider = new PayBilletProvider();
-        expect(await billetInfoProvider.payByCode(3, '12345')).toBe(parseFloat('55.00'));
+        expect(await billetInfoProvider.payByCode(3, '789')).toBe(parseFloat('55.00'));
     });
+
+    // BOLETO 2 usuário 3
+    test('Tenta buscar informaçoões de um boleto que já foi pago e deletado da base.', async () => {
+        const payBilletProvider = new PayBilletProvider();
+        await payBilletProvider.payByCode(3, '101112');
+
+        const billetInfoProvider = new BilletInfoProvider();
+        expect(await billetInfoProvider.findByCode('101112')).toBe(null);
+    }); 
 });

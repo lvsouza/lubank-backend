@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 
-import { CreateUserController, AuthorizeUserController, UserBalanceController, DepositController } from './controllers';
+import { CreateUserController, AuthorizeUserController, UserBalanceController, DepositController, TransferController } from './controllers';
 
 const route = Router();
 
@@ -34,5 +34,9 @@ route.get('/api/balance', userBalanceController.execute);
 // Rota que deposita um valor na conta de um usuário
 const depositController = new DepositController();
 route.post('/api/deposit', depositController.validation, depositController.execute);
+
+// Rota que transfere um valor da conta do usuário
+const transferController = new TransferController();
+route.post('/api/transfer', transferController.validation, transferController.execute);
 
 export const routes = route;

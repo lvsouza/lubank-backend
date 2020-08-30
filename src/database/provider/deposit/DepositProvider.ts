@@ -32,7 +32,6 @@ export class DepositProvider {
                 balance: parseFloat(`${balance + value}`)
             };
         } catch (e) {
-            console.log(e.message);
             return null;
         }
     }

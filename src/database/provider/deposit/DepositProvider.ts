@@ -14,7 +14,7 @@ export class DepositProvider {
             if (balance === null) return null;
 
             const insertedIds = await Knex(TableNames.transaction)
-                .insert({ value, user_id: userId, type_id: TransactionTypes.Deposito, created_at: Knex.fn.now() });
+                .insert({ value, user_id: userId, type_id: TransactionTypes.Deposit, created_at: Knex.fn.now() });
 
             if (!insertedIds[0]) return null;
 

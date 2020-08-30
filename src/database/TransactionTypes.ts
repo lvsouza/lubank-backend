@@ -1,5 +1,5 @@
 export enum TransactionTypes {
-    Deposito = 1,
-    Transferencia = 2,
-    Pagamento = 3,
+    Deposit = 1,
+    Transfer = 2,
+    Payment = 3,
 }

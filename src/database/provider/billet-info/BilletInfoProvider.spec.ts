@@ -9,7 +9,7 @@ describe('Busca informações de boletos', () => {
         // Usuários que serão colocados na base para serem usados nos testes
         const billets: ICreateBillet[] = [
             { code: '12345', favored: 'Teste 1', value: 450.00 },
-            { code: '6789', favored: 'Teste 2', value: 1000.00 },
+            { code: '6789', favored: 'Teste 2', value: 1000.45 },
             { code: '123789456', favored: 'Teste 3', value: 50.00 },
         ];
 
@@ -29,7 +29,7 @@ describe('Busca informações de boletos', () => {
     // BOLETO teste2
     test('Busca boleto 2', async () => {
         const billetInfoProvider = new BilletInfoProvider();
-        expect(await billetInfoProvider.findByCode('12345')).toEqual({ id: 2, code: '6789', favored: 'Teste 2', value: parseFloat('1000.00') });
+        expect(await billetInfoProvider.findByCode('6789')).toEqual({ id: 2, code: '6789', favored: 'Teste 2', value: parseFloat('1000.45') });
     });
 
     // BOLETO teste3

@@ -1,6 +1,6 @@
 import { diffDates, formatDate } from "../../../services/helper";
 import { TableNames } from "../../TableNames";
-import Knex from './../../connection';
+import knex from './../../connection';
 
 export class UserBalanceProvider {
     /**
@@ -9,17 +9,22 @@ export class UserBalanceProvider {
      * @param id `user_id` do usuário que está sedo consultado
      */
     async getBalanceByUserId(id: number): Promise<number | null> {
+        const trx = await knex.transaction();
+
         try {
-            let userAccount = await Knex(TableNames.account)
+            let userAccount = await trx(TableNames.account)
                 .select<{ balance: number, last_update: string }[]>('balance', 'last_update')
                 .where({ user_id: id })
                 .first();
 
             if (userAccount?.balance === undefined) {
+                trx.rollback();
                 return null;
             }
 
-            const outdatedNumberOfDays = diffDates(new Date(userAccount.last_update), new Date(Date.now()));
+            const currentdate = formatDate(new Date(Date.now()));
+            const outdatedNumberOfDays = diffDates(new Date(userAccount.last_update), new Date(currentdate));
+
             if (outdatedNumberOfDays > 0) {
                 let days = outdatedNumberOfDays;
 
@@ -30,19 +35,24 @@ export class UserBalanceProvider {
                 } while (days > 0);
 
                 // Atualiza o saldo na base de dados
-                const res = await Knex(TableNames.account)
+                const res = await trx(TableNames.account)
                     .update({
+                        last_update: currentdate,
                         balance: userAccount.balance,
-                        last_update: formatDate(new Date(Date.now())),
                     })
                     .where('user_id', id);
 
                 // Se a inserção deu errado retorna null
-                if (res === 0) return null;
+                if (res === 0) {
+                    trx.rollback();
+                    return null;
+                }
             }
 
+            trx.commit();
             return parseFloat(userAccount.balance.toFixed(2));
         } catch (_) {
+            trx.rollback();
             return null;
         }
     }

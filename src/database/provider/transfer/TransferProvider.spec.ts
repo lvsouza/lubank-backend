@@ -43,7 +43,7 @@ describe('Realiza transferência', () => {
     });
 
     // USUÀRIO teste2
-    test('Realiza uma transferência do usuário 2 que está a um dia sem atualizar a conta com juros para outro', async () => {
+    test('Realiza uma transferência do usuário 2 que está a um dia sem atualizar a conta com juros', async () => {
         const transferProvider = new TransferProvider();
         expect(await transferProvider.execute(2, 50.00)).toEqual({ balance: parseFloat('455.00') });
     });

@@ -122,7 +122,7 @@ lubank-backend
 1. **Estratégia de autenticação** - 
  Para a realizar o login na aplicação o usuário préviamente deve ter uma conta registrada. Utilizando seu email e senha ele poderá realizar a autenticação através do servidor. O servidor ao receber uma chamada para sua rota de autenticação devolve uma token `JWT` de acesso. Apartir deste momento todas as chamadas devem informar no header o `authorization` para proceguir. Esta é uma abordagem comum em conexões entre o servidor e a aplicação cliente. 
 
-2.  **Calculo do rendimento** - O calculo dos rendimento do usuário nessa aplicação é feita no momento da consulta do seu saldo ou logo antes de algum tipo de transação ser feita. Isso é assim por que o SQLite não possui uma forma muito segura de fazê-la através de um trigger da base. Embora não parece, mas pode ser uma abordagem muito interressante.
+2.  **Calculo do rendimento** - O calculo dos rendimento do usuário nessa aplicação é feita no momento da consulta do seu saldo ou logo antes de algum tipo de transação ser feita. Isso é assim por que o SQLite não possui uma forma muito segura de fazê-la. Embora não parece, mas pode ser uma abordagem muito interressante.
 
 3. **KNEX - SQL query builder** - Estou utilizando este meio para realizar as consultas na base porque o knex torna os selects, updates e deletes muito mais parecidos com o javascript, o que facilita o endendimento e a manutenção, ainda utilizando typescript os autocompletes são de grande ajuda tanto para agilizar o desenvolvimento quando para deixá-lo mais prazeroso.
 

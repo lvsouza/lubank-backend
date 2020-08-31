@@ -103,3 +103,22 @@ lubank-backend
   - **.tsconfig.json** - Configurações do typescript.
 
 
+## As principais abordagem
+
+1. **Estratégia de autenticação** - 
+ Para a realizar o login na aplicação o usuário préviamente deve ter uma conta registrada. Utilizando seu email e senha ele poderá realizar a autenticação através do servidor. O servidor ao receber uma chamada para sua rota de autenticação devolve uma token `JWT` de acesso. Apartir deste momento todas as chamadas devem informar no header o `authorization` para proceguir. Esta é uma abordagem comum em conexões entre o servidor e a aplicação cliente. 
+
+2.  **Calculo do rendimento** - O calculo dos rendimento do usuário nessa aplicação é feita no momento da consulta do seu saldo ou logo antes de algum tipo de transação ser feita. Isso é assim por que o SQLite não possui uma forma muito segura de fazê-la através de um trigger da base. Embora não parece, mas pode ser uma abordagem muito interressante.
+
+3. **KNEX - SQL query builder** - Estou utilizando este meio para realizar as consultas na base porque o knex torna os selects, updates e deletes muito mais parecidos com o javascript, o que facilita o endendimento e a manutenção, ainda utilizando typescript os autocompletes são de grande ajuda tanto para agilizar o desenvolvimento quando para deixá-lo mais prazeroso.
+
+4. **`Celebrate`** - O `celebrate` é uma lib de validações de entrada, usamos ela no projeto para facilitar a validação dos campos que esperamos como parâmetro em algumas rotas.
+
+5. **`Provider`, `testes`, `controller` e `rota`** - Na verdade estas três abordagem estão muito ligadas, explicação: 
+
+      * `Provider` - Este é na verdade apenas um conceito que nesse caso estou usando para me dirigir a um metodo de uma classe. A questão é que este metodo fará acesso a base de dados em algum momento, realizando alguma consulta ou escrevendo alguma coisa nas tabelas.
+      * `Testes` - Os testes vão utilizar os metodos providers para testar algum tipo de operação na base de dados para fazer uma validação direta se o metodos em questão está fazendo aquilo que foi projetado para fazer.
+      * `Controller` - Assim como o provider, este é apenas um nome para um determinado tipo de metodo. Nesse caso os metodos serão a porta de entrada da requisição. Os metodos farão a interação básica com a requisição, depois devem redirecionar algum tipo de solicitação para os metodos providers. Ao final, a controller devolve uma response contendo algum tipo de erro ou algum tipo de sucesso.
+      * `Rota` - Está e a camada mais esterna, nela é definido os metodos utilizados e as urls.
+
+

@@ -1,25 +1,105 @@
+
+<h1 style="font-size:50px" align="center">Lubank</h1>
+
 <p align="center">
-  <img src="https://camo.githubusercontent.com/2c86221dbae7470e5581d65d4c8ef51b1378300a/68747470733a2f2f6c68362e676f6f676c6575736572636f6e74656e742e636f6d2f594249384b3974576c30445457796b6876436c57696d597242655834784d6b78766f4f6671586936366431747166335f6c666f447972774c712d3554454a5238773674712d633547552d51474461786a656a56773d77313336362d683630382d7277" height="320" alt="Logo lubank" />
+  <img src="https://raw.githubusercontent.com/lvsouza/lubank-backend/master/docs/logo-lubank.png" height="320" alt="Logo lubank" />
 </p>
 
 
-# Lubank
+## Descrição
+
 Sistema de controle de conta corrente bancária, processando solicitações de depósito, resgates e pagamentos. 
 
+## A aplicação
 
-### A aplicação
 - **Principais funcionalidades**
-  - Extrato / histórico da conta (entradas e saídas)
-  - Realizar um depósito
-  - Realizar um resgate
-  - Fazer um pagamento
-  - Consulta de saldo
+  - Autenticação - Permite que um usuário que já tenha uma conta cadastrada faça login e veja sua conta
+  - Cadastro - Permite que um pessoa possa criar uma conta dentro da aplicação e tenha uma conta remunerada
+  - Extrato / histórico da conta (entradas e saídas) - Permite que seja consultado o extrato completo da conta
+  - Realizar um depósito - Possibilita que seja feito um depósito na conta do usuário logado
+  - Realizar um resgate - Permite realizar uma transferência para outra conta qualquer
+  - Fazer um pagamento - Permite pagar boletos que foram cadastrados previamente na base
+  - Consulta de saldo - Consulta o saldo em conta, e o atualiza com o calculo de juros
 
 
-### As tecnologias utilizadas
+## As tecnologias utilizadas
 - TypeScript
 - Express
 - Knex
 - SQlite
 - Jest
+- Node
+
+## Por que de cada tecnologia?
+- **Node** - Bom, node basicamente é o que me permite escolher as outras tecnologias, exceto pelo SQLite.
+- **TypeScript** - Escolhi o typescript porque tende a facilitar o desenvolvimento para a maioria dos projetos, ajuda a evitar bugs e deixa o código mais limpo(se utilizado da maneira correta), além de ser possível definir tipagens para praticamente tudo. A logo e a médio prazo ou para times de qualquer tamanho a escolha do TS vai trazer maior desempenho no desenvolvimento. e mais facilidade na padronização do desenvolvimento.
+- **Jest** - O Jest foi escolhido por que se integra muito bem com o typescript e com o Knex, além do mais ele é muito siples de se utilizar e tem uma boa documentação.
+- **Express** - Esta foi minha escolha porque o express é muito simples de ser utilizado, tem uma boa documentação na internet e se integra muito bem com todas as tecnologias que optei.
+- **Knex** - O Knex é minha escolha para o projeto porque ele agiliza demais o desenvolvimento em geral, se integra muito bem o typescript e me permite acessar muito mais rápido diverso recursos úteis do banco de dados. E outro ponto decisivo nessa escolha é a integração com diversos bancos de dados como o `postgress`, `SQLServer`, `MySql` e principalmente com o `SQLite`. Vale destacar que para alterar de banco de dados na maioria das vezes é apenas alterar a string de conexão.
+- **SQLite** - As principais razões dessa escolha foram a praticidade na utilização, a integração com o Knex, por ser leve, ser relacional e ainda ser rodado em memória no `beforeAll` do Jest. Tendo em vista que este projeto não será utílidado em produção essa pode ser uma escolha.
+
+## Organização do projeto
+```YAML
+lubank-backend
+  docs
+  src
+    controllers
+      ...
+      ...
+    database
+      migrations
+        ...
+        ...
+      provider
+        ...
+        ...
+      seeds
+        ...
+        ...
+      connection.ts
+      MigrationHelp.ts
+      TableNames.ts
+      TransactionTypes.ts
+    services
+      auth
+        ...
+        ...
+      helper
+        ...
+        ...
+    routes.ts
+    server.ts
+  .env
+  .gitignore
+  knexfile.js
+  packaje.json
+  jest.config.js
+  README.md
+  tsconfig.json
+```
+
+- **lubank-backend** - Base do projeto.
+  - **docs** - Onde deve fica coisas que documentam o projeto como arquivos .MD, imagens e etc.
+  - **src** - Pasta base do desenvolvimento, todas as implementações de recursos do projeto devem ficar aqui.
+    - **controllers** - onde fica os arquivos que são usados diretamente pelas rotas da aplicação.
+    - **database** - Fica toda a configuração do banco de dados como arquivos e migração, seeds e os principais metodos de acesso a base.
+      - **migrations** - Onde fica os aquivo que junto com o knex permitem criar as tabelas da base de dados ou até excluí-las se necessário.
+      - **provider** - Fica a definição dos metodos utilizados para escrever e ler os dados da base, este metodos são utilizados diretamente pelas controllers.
+      - **seeds** - Assim como as migrations, é a definição que arquivos utlizados pelo knex. Nesse caso os seeds apenas criam alguns registros na base caso necessário.
+      - **connection.ts** - Cria a conexão da base com o knex.
+      - **MigrationHelp.ts** - Fornece com alguns utilitários para as migrações.
+      - **TableNames.ts** - Enumerador com o nome das tabelas, ajuda a evitar erros de nomenclatura da hora de usar uma tabela.
+      - **TransactionTypes.ts** - Enumerador com os tipos de transações que podem ser feitas, ajuda no desenvolvimento.
+    - **services** - Fornece para a aplicação diverças ferramentas que auxiliam o desenvolvimento.
+      - **auth** - Contém o encode e decode de token jwt e criptografia de senhas.
+      - **helper** - Algumas outras ferramentas úteils como: diffDate, formateDate, randomNumbers e responseHandler.
+    - **routes.ts** - Contém as definições de rotas das aplicações .
+    - **server.ts** - Contém a o startup do servidor.
+  - **.env** - Variáveis de ambiente.
+  - **.gitignore** - Arquivos e pastas ignoradas pelo git.
+  - **.knexfile.js** - configurações do knex.
+  - **.packaje.json** - Configurações do projeto como um todo.
+  - **.README.md** - Documentação básica da aplicação.
+  - **.tsconfig.json** - Configurações do typescript.
+
 

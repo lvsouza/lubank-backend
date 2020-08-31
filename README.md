@@ -7,7 +7,7 @@
 
 
 ## De onde veio a ideia
-A ideia do projeto veio através de um desafio. Os requisitos inicias que deram origem a todo este conteúdo pode ser encontrado aqui neste [link](https://docs.google.com/document/d/109Des7J2tU1Gk_Tg8gwvgAsSm2hm1abN8XNAydOZVts/edit#). Os nomes e os logo tipos forande desenvolvidos apenas para dar uma identidade extra ao projeto.
+A ideia do projeto veio através de um desafio. Os requisitos inicias que deram origem a todo este conteúdo pode ser encontrado aqui neste [link](https://docs.google.com/document/d/109Des7J2tU1Gk_Tg8gwvgAsSm2hm1abN8XNAydOZVts/edit?usp=sharing). Os nomes e os logo tipos forande desenvolvidos apenas para dar uma identidade extra ao projeto.
 
 
 ## Sobre o desenvolvimento

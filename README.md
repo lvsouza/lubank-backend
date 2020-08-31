@@ -6,6 +6,20 @@
 </p>
 
 
+## De onde veio a ideia
+A ideia do projeto veio através de um desafio. Os requisitos inicias que deram origem a todo este conteúdo pode ser encontrado aqui neste [link](https://docs.google.com/document/d/109Des7J2tU1Gk_Tg8gwvgAsSm2hm1abN8XNAydOZVts/edit#). Os nomes e os logo tipos forande desenvolvidos apenas para dar uma identidade extra ao projeto.
+
+
+## Sobre o desenvolvimento
+Para ser possível a conslusão deste projeto foram utilizados algums outros recursos disponíveis aqui mesmo no github e no figma.
+
+1. [Link](https://github.com/lvsouza/lubank-backend/projects/1) **Quadro de acompanhamento do projeto** - Assim como em diversos time de desenvolvimento, foi utilizado um board para acompanhar o progresso do desenvolvimento da aplicação.
+
+2. [Link](https://github.com/lvsouza/lubank-backend/issues?q=is%3Aissue+is%3Aclosed) **Issues para quebra de problemas** - De fato esta aplicação não nenhum pouco pequena, para auxiliar minha organização utilizei as issues. Cada issue cadastrada representa uma parte do processo de desenvolvimento.
+
+3. [Link](https://www.figma.com/file/bfGY4OUuswbhz7DMn1Y6Mr/Lubank?node-id=0%3A1) **Protótipo no figma** - É fato que nos conseguimos visualizar muito melhor o que precisamos fazer se tiver em mão um protótipo do resultado final esperado. Tendo isso em mente, também foi desenvolvido por mim([Lucas Souza](https://github.com/lvsouza)) um protótipo, apenas uma ideia de interface pra a aplicação. Utilizo apenas para uma melhor organização do pensamento, mas não algo estremamento importante.
+
+
 ## Descrição
 
 Sistema de controle de conta corrente bancária, processando solicitações de depósito, resgates e pagamentos. 

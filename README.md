@@ -122,3 +122,5 @@ lubank-backend
       * `Rota` - Está e a camada mais esterna, nela é definido os metodos utilizados e as urls.
 
 
+## License
+MIT @ [Lucas Souza](https://github.com/lvsouza)

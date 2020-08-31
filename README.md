@@ -136,5 +136,16 @@ lubank-backend
       * `Rota` - Está e a camada mais esterna, nela é definido os metodos utilizados e as urls.
 
 
+## Executando a aplicação
+```BASH
+git clone https://github.com/lvsouza/lubank-backend.git
+cd ./lubank-backend/
+yarn
+yarn knex:migrate
+yarn start
+```
+Interaja com a aplicação em `http://localhost:3333/`
+
+
 ## License
 MIT @ [Lucas Souza](https://github.com/lvsouza)

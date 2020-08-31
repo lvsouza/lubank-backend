@@ -1,3 +1,4 @@
+export { TransactionHistoryController } from './transactions/TransactionHistoryController';
 export { AuthorizeUserController } from './authorize-user/AuthorizeUserController';
 export { CreateBilletController } from './create-billet/CreateBilletController';
 export { UserBalanceController } from './user-balance/UserBalanceController';

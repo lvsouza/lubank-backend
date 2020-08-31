@@ -1,3 +1,4 @@
+export { TransactionHistoryProvider } from './transactions/TransactionHistoryProvider';
 export { AuthorizeUserProvider } from './authorize-user/AuthorizeUserProvider';
 export { CreateBilletProvider } from './create-billet/CreateBilletProvider';
 export { UserBalanceProvider } from './user-balance/UserBalanceProvider';

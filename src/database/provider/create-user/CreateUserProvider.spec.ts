@@ -18,7 +18,7 @@ describe('Inscrição de usuário', () => {
         email: 'test@gmail.com',
         name: 'Teste do desenvolvedor',
     };
-    
+
     const user2: ICreateUser = {
         id: null,
         password: '123456',
@@ -28,12 +28,8 @@ describe('Inscrição de usuário', () => {
 
     test('Criação de usuário 1', async () => {
         const createUserProvider = new CreateUserProvider();
-        expect(await createUserProvider.execute(user1))
-            .toEqual({
-                id: 1,
-                email: 'test@gmail.com',
-                name: 'Teste do desenvolvedor',
-            });
+        expect((await createUserProvider.execute(user1))?.id)
+            .toBe(1);
     });
 
     test('Criação de usuário 1 duplicado', async () => {
@@ -43,12 +39,8 @@ describe('Inscrição de usuário', () => {
 
     test('Criação de usuário 2', async () => {
         const createUserProvider = new CreateUserProvider();
-        expect(await createUserProvider.execute(user2))
-            .toEqual({
-                id: 2,
-                email: 'test2@gmail.com',
-                name: 'Teste do desenvolvedor',
-            });
+        expect((await createUserProvider.execute(user2))?.id)
+            .toBe(2);
     });
 
     test('Criação de usuário 2 duplicado', async () => {

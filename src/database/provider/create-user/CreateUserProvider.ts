@@ -11,7 +11,7 @@ export class CreateUserProvider {
     /**
      * Insert a new user in the database
      */
-    async execute(user: ICreateUser): Promise<Omit<ICreateUser, 'password'> | null> {
+    async execute(user: ICreateUser): Promise<Omit<ICreateUser, 'password'> & { agency: number, accountNumber: string } | null> {
         try {
             const hashedPassword = await passHash(user.password);
 
@@ -59,9 +59,11 @@ export class CreateUserProvider {
             //#endregion
 
             return {
+                accountNumber: newAccountNumber,
                 id: Number(insertedIds[0]),
                 email: user.email,
                 name: user.name,
+                agency: 1102.
             };
         } catch (e) {
             return null;

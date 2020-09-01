@@ -63,6 +63,8 @@ export class CreateUserController {
                 user: {
                     name: createdUser.name,
                     email: createdUser.email,
+                    agency: createdUser.agency,
+                    accountNumber: createdUser.accountNumber,
                 },
                 accessToken,
             },

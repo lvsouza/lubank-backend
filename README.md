@@ -24,9 +24,38 @@ Para ser possível a conslusão deste projeto foram utilizados algums outros rec
 
 3. [Link](https://www.figma.com/file/bfGY4OUuswbhz7DMn1Y6Mr/Lubank?node-id=0%3A1) **Protótipo no figma** - É fato que nos conseguimos visualizar muito melhor o que precisamos fazer se tiver em mão um protótipo do resultado final esperado. Tendo isso em mente, também foi desenvolvido por mim([Lucas Souza](https://github.com/lvsouza)) um protótipo, apenas uma ideia de interface pra a aplicação. Utilizo apenas para uma melhor organização do pensamento, mas não algo estremamento importante.
 
+4. **Dailys** - Durante o desenvolvimento mantive a prática das dailys, claro de forma descrita .
+
+    * ***Dia 1 - Quarta(26/08/2020)***
+      * Comecei a organizar a documentação do projeto, aínda da parece um projeto bem complexo, mais especificamente em algumas partes, como o cálculo de rendimentos e dos testes em cada funcionalidade, por exemplo.
+    Criei uma lista simples das coisa que deve fazer
+
+    * ***Dia 2 - Quinta(27/08/2020***
+      * No dia 1 foi bem interessante, consegui me organizar com a criação do projeto no Github e criação do board para acompanhar o andamento do novo. Agora no dia 2, tenho a intenção de criar os cards no bord e as issue a partir desse cards definindo assim o primeiro MVP do projeto.
+
+    * ***Dia 3 - Sexta(28/08/2020***
+      * O dia 2 foi interessante, organizei o básico do projeto, como tecnologias que ia usar e um pouco de como seria o fluxo da aplicação. Ainda no dia 2, por se tratar de uma aplicação completa resolvi começar a desenvolver um protótipo navegável de como seria a experiência do usuário dentro pela aplicação. Para o dia 3, tenho a intenção de finalizar o desenvolvimento do protótipo, separar e escrever um pouco melhor os quesitos para cada rota do backend, um pouco mais baseado no protótipo.
+
+    * ***Dia 4 - Sábado(29/08/2020***
+      * No dia 3 finalizei o desenvolvimento do protótipo. E escrevi um pouco melhor os quesitos de cada rota que deve ser criada. Próximo passo que eu fiz, agora no dia 4, foi tirar o projeto do papel, criei o projeto com as principais tecnologias que escolhi utilizar. Ao decorrer deste dia pretendo iniciar o desenvolvimento das APIs, ainda não defini 100% como funcionará a organização dentro do projeto, devo pesquisar para encontrar um organização que me permita realizar testes e seja prática e clara de entender e começar o desenvolvimento dos recurso de fato.
+
+    * ***Dia 5 - Domingo(30/08/2020***
+      * O dia 4 foi muito produtivo, Consegui definir um padrão de organização do projeto. Comecei a desenvolver o projeto e consegui avançar bastante, algumas das rotas já estão desenvolvidas. Dentre as rotas que já estão desenvolvidas está umas das rotas principais, a rota de saldo, está é tão importante porque nela apliquei o calculo dos juros compostos de um dia para o outro. No dia de hoje(Dia 5) pretendo finalizar o desenvolvimento de todo o backend, pelo menos a parte prática.  
+
+    * ***Dia 6 - Segunda(31/08/2020***
+      * Ontem, consegui finalizar o desenvolvimento do projeto. Próximo passo ainda relacionado ao projeto e documentar melhor o projeto. Para hoje pretendo iniciar a organização do desenvolvimento do projeto de front, iniciar seu desenvolvimento e deixar para amanhã(último dia) a menor quantidade de coisas, talvez apenas testes a mão e validações de UX. 
+
+    * ***Dia 7 - Terça(01/09/2020***
+      * No Dia 6 consegui finalizar completamente a documentação do projeto, o que infelizmente tomou mais tempo do que eu pensava. Mas ainda assim, consegui iniciar o desenvolvimento da aplicação de frontend. Hoje, pretendo finalizar o front para que no dia seguinte na parte da manhã ainda consiga revisar e encontrar algum possível bugs que deixei passar nos dias anteriores.
+
+    * ***Dia 8 - Quarta(02/09/2020)***
+      * Ontem, como descrito, consegui finalizar o front. Ainda pela manhã revisei todas as funcionalidades. Próximo e último passo é complementar a documentação com este arquivo de daily.
+
+
 ## A aplicação
 
 - **Principais funcionalidades**
+  - Frontend da aplicação [aqui](https://github.com/lvsouza/lubank-front).
   - Autenticação - Permite que um usuário que já tenha uma conta cadastrada faça login e veja sua conta
   - Cadastro - Permite que um pessoa possa criar uma conta dentro da aplicação e tenha uma conta remunerada
   - Extrato / histórico da conta (entradas e saídas) - Permite que seja consultado o extrato completo da conta

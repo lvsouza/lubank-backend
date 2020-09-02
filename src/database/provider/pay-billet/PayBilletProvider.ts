@@ -27,15 +27,16 @@ export class PayBilletProvider {
                 .select<IBilletInfo>('id', 'code', 'favored', 'value')
                 .where('code', code)
                 .first();
-            if (!billet) return null;
+            if (!billet) {
+                trx.rollback();
+                return null;
+            }
 
             // Impede que seja realizado uma transferência se não tiver saldo
-            if ((balance - billet.value) < 0) return null;
-
-            const insertedIds = await trx(TableNames.transaction)
-                .insert({ value: billet.value, user_id: userId, type_id: TransactionTypes.Payment, created_at: trx.fn.now() });
-
-            if (!insertedIds[0]) return null;
+            if ((balance - billet.value) < 0) {
+                trx.rollback();
+                return null;
+            }
 
             // Atualiza o saldo na base de dados
             const wasUpdated = await trx(TableNames.account)
@@ -49,6 +50,14 @@ export class PayBilletProvider {
                 trx.rollback();
                 return null;
             };
+
+            const insertedIds = await trx(TableNames.transaction)
+                .insert({ value: billet.value, user_id: userId, type_id: TransactionTypes.Payment, created_at: trx.fn.now() });
+
+            if (!insertedIds[0]) {
+                trx.rollback();
+                return null;
+            }
 
             // Apaga o boleto pago da base
             await trx(TableNames.billet)
